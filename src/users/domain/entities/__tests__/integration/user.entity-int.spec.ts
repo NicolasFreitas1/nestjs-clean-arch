@@ -91,6 +91,7 @@ describe('User entity integration tests', () => {
 
       expect(() => new UserEntity(props)).toThrowError(EntityValidationError);
     });
+
     it('Should throw an error when creating a user with invalid createdAt', () => {
       let props: UserProps = {
         ...UserDataBuilder({}),
@@ -105,6 +106,16 @@ describe('User entity integration tests', () => {
       };
 
       expect(() => new UserEntity(props)).toThrowError(EntityValidationError);
+    });
+
+    it('Should a valid user', () => {
+      expect.assertions(0);
+
+      const props: UserProps = {
+        ...UserDataBuilder({}),
+      };
+
+      new UserEntity(props);
     });
   });
 });
