@@ -64,6 +64,7 @@ describe('In memory repository unit tests', () => {
     const entity = new StubEntity({ name: 'test name', price: 50 });
 
     await sut.insert(entity);
+
     const entityUpdated = new StubEntity(
       { name: 'updated', price: 10 },
       entity.id,
@@ -72,5 +73,21 @@ describe('In memory repository unit tests', () => {
     await sut.update(entityUpdated);
 
     expect(sut.items[0].toJSON()).toStrictEqual(entityUpdated.toJSON());
+  });
+
+  it('Should throw an error on delete when entity not found', async () => {
+    await expect(sut.delete('non existing item')).rejects.toThrow(
+      new NotFoundError('Entity not found'),
+    );
+  });
+
+  it('Should be able to find an entity by id', async () => {
+    const entity = new StubEntity({ name: 'test name', price: 50 });
+
+    await sut.insert(entity);
+
+    await sut.delete(entity.id);
+
+    expect(sut.items).toHaveLength(0);
   });
 });
