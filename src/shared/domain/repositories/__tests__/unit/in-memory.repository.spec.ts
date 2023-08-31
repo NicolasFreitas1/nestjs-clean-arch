@@ -32,7 +32,7 @@ describe('In memory repository unit tests', () => {
     );
   });
 
-  it('Should be able to find a entity by id', async () => {
+  it('Should be able to find an entity by id', async () => {
     const entity = new StubEntity({ name: 'test name', price: 50 });
 
     await sut.insert(entity);
@@ -50,5 +50,27 @@ describe('In memory repository unit tests', () => {
     const result = await sut.findAll();
 
     expect(result).toStrictEqual([entity]);
+  });
+
+  it('Should throw an error on update when entity not found', async () => {
+    const entity = new StubEntity({ name: 'test name', price: 50 });
+
+    await expect(sut.update(entity)).rejects.toThrow(
+      new NotFoundError('Entity not found'),
+    );
+  });
+
+  it('Should be able to update an entity', async () => {
+    const entity = new StubEntity({ name: 'test name', price: 50 });
+
+    await sut.insert(entity);
+    const entityUpdated = new StubEntity(
+      { name: 'updated', price: 10 },
+      entity.id,
+    );
+
+    await sut.update(entityUpdated);
+
+    expect(sut.items[0].toJSON()).toStrictEqual(entityUpdated.toJSON());
   });
 });
