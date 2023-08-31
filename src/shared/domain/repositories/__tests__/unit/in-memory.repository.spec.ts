@@ -41,4 +41,14 @@ describe('In memory repository unit tests', () => {
 
     expect(result.toJSON()).toStrictEqual(entity.toJSON());
   });
+
+  it('Should be able to find all entity', async () => {
+    const entity = new StubEntity({ name: 'test name', price: 50 });
+
+    await sut.insert(entity);
+
+    const result = await sut.findAll();
+
+    expect(result).toStrictEqual([entity]);
+  });
 });
