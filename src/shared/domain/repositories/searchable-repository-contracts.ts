@@ -29,7 +29,15 @@ export class SearchParams {
     return this._page;
   }
 
-  private set page(value: number) {}
+  private set page(value: number) {
+    let _page = +value;
+
+    if (Number.isNaN(_page) || _page <= 0 || parseInt(_page as any) !== _page) {
+      _page = 1;
+    }
+
+    this._page = _page;
+  }
 
   get perPage() {
     return this._perPage;
