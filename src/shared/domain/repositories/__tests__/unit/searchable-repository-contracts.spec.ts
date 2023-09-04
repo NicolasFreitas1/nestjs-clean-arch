@@ -225,60 +225,60 @@ describe('Searchable Repository', () => {
         ).toEqual(param.expected);
       });
     });
-  });
 
-  it('filter prop', () => {
-    const sut = new SearchParams();
+    it('filter prop', () => {
+      const sut = new SearchParams();
 
-    expect(sut.filter).toBeNull();
+      expect(sut.filter).toBeNull();
 
-    const params = [
-      {
-        filter: null as any,
-        expected: null,
-      },
-      {
-        filter: undefined as any,
-        expected: null,
-      },
-      {
-        filter: '' as any,
-        expected: null,
-      },
-      {
-        filter: 'test',
-        expected: 'test',
-      },
-      {
-        filter: 0,
-        expected: '0',
-      },
-      {
-        filter: -1,
-        expected: '-1',
-      },
-      {
-        filter: 5.5,
-        expected: '5.5',
-      },
-      {
-        filter: true,
-        expected: 'true',
-      },
-      {
-        filter: {},
-        expected: '[object Object]',
-      },
-      {
-        filter: 50,
-        expected: '50',
-      },
-    ];
+      const params = [
+        {
+          filter: null as any,
+          expected: null,
+        },
+        {
+          filter: undefined as any,
+          expected: null,
+        },
+        {
+          filter: '' as any,
+          expected: null,
+        },
+        {
+          filter: 'test',
+          expected: 'test',
+        },
+        {
+          filter: 0,
+          expected: '0',
+        },
+        {
+          filter: -1,
+          expected: '-1',
+        },
+        {
+          filter: 5.5,
+          expected: '5.5',
+        },
+        {
+          filter: true,
+          expected: 'true',
+        },
+        {
+          filter: {},
+          expected: '[object Object]',
+        },
+        {
+          filter: 50,
+          expected: '50',
+        },
+      ];
 
-    params.forEach((param) => {
-      expect(new SearchParams({ filter: param.filter }).filter).toEqual(
-        param.expected,
-      );
+      params.forEach((param) => {
+        expect(new SearchParams({ filter: param.filter }).filter).toEqual(
+          param.expected,
+        );
+      });
     });
   });
 });
