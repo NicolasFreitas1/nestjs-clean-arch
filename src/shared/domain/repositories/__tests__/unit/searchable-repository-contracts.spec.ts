@@ -215,7 +215,7 @@ describe('Searchable Repository', () => {
         },
         {
           sortDir: 'DESC',
-          expected: 'DESC',
+          expected: 'desc',
         },
       ];
 
