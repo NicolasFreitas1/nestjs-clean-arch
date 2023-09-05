@@ -6,7 +6,7 @@ import { ConflictError } from '@/shared/domain/errors/conflict-error';
 import { BadRequestError } from '@/users/application/errors/bad-request-error';
 import { SignUpUseCase } from '../../signup.usecase';
 
-describe('UserInMemoryRepository unit tests', () => {
+describe('SignUpUseCase unit tests', () => {
   let sut: SignUpUseCase.UseCase;
   let repository: UserInMemoryRepository;
   let hashProvider: HashProvider;
