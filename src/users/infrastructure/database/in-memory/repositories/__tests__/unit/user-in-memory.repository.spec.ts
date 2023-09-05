@@ -96,8 +96,12 @@ describe('User In memory repository unit tests', () => {
       new UserEntity(UserDataBuilder({ name: 'a' })),
     ];
 
-    const itemsSorted = await sut['applySort'](items, 'name', 'asc');
+    let itemsSorted = await sut['applySort'](items, 'name', 'asc');
 
     expect(itemsSorted).toStrictEqual([items[2], items[0], items[1]]);
+
+    itemsSorted = await sut['applySort'](items, 'name', null);
+
+    expect(itemsSorted).toStrictEqual([items[1], items[0], items[2]]);
   });
 });
