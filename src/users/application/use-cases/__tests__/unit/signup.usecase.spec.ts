@@ -3,7 +3,7 @@ import { HashProvider } from '@/shared/application/providers/hash-provider';
 import { BcryptjsHashProvider } from '@/users/infrastructure/providers/hash-provider/bcryptjs-hash.provider';
 import { UserDataBuilder } from '@/users/domain/testing/helpers/user-data-builder';
 import { ConflictError } from '@/shared/domain/errors/conflict-error';
-import { BadRequestError } from '@/users/application/errors/bad-request-error';
+import { BadRequestError } from '@/shared/application/errors/bad-request-error';
 import { SignUpUseCase } from '../../signup.usecase';
 
 describe('SignUpUseCase unit tests', () => {
