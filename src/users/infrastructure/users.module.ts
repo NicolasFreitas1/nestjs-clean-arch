@@ -1,22 +1,20 @@
-import { Module } from '@nestjs/common';
-import { UsersService } from './users.service';
-import { UsersController } from './users.controller';
-import { SignUpUseCase } from '../application/use-cases/sign-up.usecase';
-import { UserInMemoryRepository } from './database/in-memory/repositories/user-in-memory.repository';
-import { BcryptjsHashProvider } from './providers/hash-provider/bcryptjs-hash.provider';
 import { HashProvider } from '@/shared/application/providers/hash-provider';
-import { UserRepository } from '../domain/repositories/user.repository';
-import { SignInUseCase } from '../application/use-cases/sign-in.usecase';
+import { Module } from '@nestjs/common';
+import { DeleteUserUseCase } from '../application/use-cases/delete-user.usecase';
 import { GetUserUseCase } from '../application/use-cases/get-user.usecase';
 import { ListUsersUseCase } from '../application/use-cases/list-users.usecase';
-import { UpdateUserUseCase } from '../application/use-cases/update-user.usecase';
+import { SignInUseCase } from '../application/use-cases/sign-in.usecase';
+import { SignUpUseCase } from '../application/use-cases/sign-up.usecase';
 import { UpdatePasswordUseCase } from '../application/use-cases/update-password.usecase';
-import { DeleteUserUseCase } from '../application/use-cases/delete-user.usecase';
+import { UpdateUserUseCase } from '../application/use-cases/update-user.usecase';
+import { UserRepository } from '../domain/repositories/user.repository';
+import { UserInMemoryRepository } from './database/in-memory/repositories/user-in-memory.repository';
+import { BcryptjsHashProvider } from './providers/hash-provider/bcryptjs-hash.provider';
+import { UsersController } from './users.controller';
 
 @Module({
   controllers: [UsersController],
   providers: [
-    UsersService,
     {
       provide: 'UserRepository',
       useClass: UserInMemoryRepository,
